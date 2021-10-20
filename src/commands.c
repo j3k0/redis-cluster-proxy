@@ -35,6 +35,7 @@ int getFirstMultipleReply(void *reply, void *request, char *buf, int len);
 int sumReplies(void *reply, void *request, char *buf, int len);
 int handleScanReply(void *reply, void *request, char *buf, int len);
 int getRandomReply(void *reply, void *request, char *buf, int len);
+int getInfoReply(void *reply, void *request, char *buf, int len);
 
 /* Get Keys Callbacks */
 int zunionInterGetKeys(void *req, int *first_key, int *last_key,
@@ -133,7 +134,7 @@ struct redisCommandDef redisCommandTable[203] = {
      CMDFLAG_DUPLICATE,
      0, NULL, authCommand, getFirstMultipleReply},
     {"incrbyfloat", 3, 1, 1, 1, 0, 0, NULL, NULL, NULL},
-    {"info", -1, 0, 0, 0, 0, 1, NULL, NULL, NULL},
+    {"info", -1, 0, 0, 0, 0, 0, NULL, NULL, getInfoReply},
     {"lpush", -3, 1, 1, 1, 0, 0, NULL, NULL, NULL},
     {"select", 2, 0, 0, 0, 0, 0, NULL, NULL, NULL},
     {"pfadd", -2, 1, 1, 1, 0, 0, NULL, NULL, NULL},

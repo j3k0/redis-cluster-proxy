@@ -4998,3 +4998,16 @@ cleanup:
     freeEntryPoints(config.entry_points, config.entry_points_count);
     return exit_status;
 }
+
+int getInfoReply(void *_reply, void *_req, char *buf, int len) {
+    UNUSED(_reply);
+    UNUSED(buf);
+    UNUSED(len);
+
+    clientRequest *req = _req;
+    char *message = "# Server\nredis_version:4.0.10\nredis_git_sha1:0\nredis_git_dirty:0\nredis_build_id:0\nredis_mode:standalone\nos:CentOS\narch_bits:64\nmultiplexing_api:epoll\natomicvar_api:atomic-builtin\ngcc_version:0.0.0\nprocess_id:1\ntcp_port:6379\nuptime_in_seconds:402830\nuptime_in_days:4\nhz:10\nlru_clock:7318731\nexecutable:-\nconfig_file:-\n\n# Clients\nconnected_clients:1\nclient_longest_output_list:0\nclient_biggest_input_buf:0\nblocked_clients:0\n\n# Memory\nused_memory:252333560\nused_memory_human:240.64M\nused_memory_rss:266489856\nused_memory_rss_human:254.14M\nused_memory_peak:252580112\nused_memory_peak_human:240.88M\nused_memory_peak_perc:99.90%\nused_memory_overhead:74868676\nused_memory_startup:3662184\nused_memory_dataset:177464884\nused_memory_dataset_perc:71.37%\nused_memory_lua:37888\nused_memory_lua_human:37.00K\nmaxmemory:2488396677\nmaxmemory_human:2.32G\nmaxmemory_policy:volatile-lru\nmem_fragmentation_ratio:1.06\nmem_allocator:jemalloc-4.0.3\nactive_defrag_running:0\nlazyfree_pending_objects:0\n\n# Persistence\nloading:0\nrdb_changes_since_last_save:0\nrdb_bgsave_in_progress:0\nrdb_last_save_time:1634542839\nrdb_last_bgsave_status:ok\nrdb_last_bgsave_time_sec:3\nrdb_current_bgsave_time_sec:-1\nrdb_last_cow_size:692224\naof_enabled:0\naof_rewrite_in_progress:0\naof_rewrite_scheduled:0\naof_last_rewrite_time_sec:-1\naof_current_rewrite_time_sec:-1\naof_last_bgrewrite_status:ok\naof_last_write_status:ok\naof_last_cow_size:0\n\n# Stats\ntotal_connections_received:13484\ntotal_commands_processed:2635950\ninstantaneous_ops_per_sec:3\ntotal_net_input_bytes:266117933\ntotal_net_output_bytes:3310089854\ninstantaneous_input_kbps:0.08\ninstantaneous_output_kbps:5.78\nrejected_connections:0\nsync_full:0\nsync_partial_ok:0\nsync_partial_err:1\nexpired_keys:0\nexpired_stale_perc:0.00\nexpired_time_cap_reached_count:0\nevicted_keys:0\nkeyspace_hits:0\nkeyspace_misses:4\npubsub_channels:0\npubsub_patterns:0\nlatest_fork_usec:3209\nmigrate_cached_sockets:0\nactive_defrag_hits:0\nactive_defrag_misses:0\nactive_defrag_key_hits:0\nactive_defrag_key_misses:0\n\n# Replication\nrole:master\nconnected_slaves:0\n\n# CPU\nused_cpu_sys:206.76\nused_cpu_user:149.90\nused_cpu_sys_children:0.64\nused_cpu_user_children:9.47\n\n# SSL\nssl_enabled:no\nssl_connections_to_previous_certificate:0\nssl_connections_to_current_certificate:0\nssl_current_certificate_not_before_date:(null)\nssl_current_certificate_not_after_date:(null)\nssl_current_certificate_serial:0\n\n# Cluster\ncluster_enabled:0\n\n# Keyspace\ndb0:keys=0,expires=0,avg_ttl=0\n";
+    // printf("%s",message);
+    addReplyString(req->client, message, req->id);
+    req->client->min_reply_id = req->max_child_reply_id + 1;
+    return 1;
+}

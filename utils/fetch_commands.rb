@@ -71,6 +71,7 @@ REPLY_HANDLERS = {
     'scan' => 'handleScanReply',
     'command' => 'getFirstMultipleReply',
     'randomkey' => 'getRandomReply',
+    'info' => 'getInfoReply',
 }
 GET_KEYS_PROC = {
     'zunionstore' => 'zunionInterGetKeys',
