@@ -725,6 +725,12 @@ int pingCommand(void *r) {
     return PROXY_COMMAND_HANDLED;
 }
 
+int selectCommand(void *r) {
+    clientRequest *req = r;
+    addReplyString(req->client, "OK", req->id);
+    return PROXY_COMMAND_HANDLED;
+}
+
 int multiCommand(void *r) {
     clientRequest *req = r;
     client *c = req->client;

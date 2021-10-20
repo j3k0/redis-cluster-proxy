@@ -48,6 +48,7 @@ COMMAND_HANDLERS = {
     'ping' => 'pingCommand',
     'auth' => 'authCommand',
     'scan' => 'scanCommand',
+    'select' => 'selectCommand',
     #'randomkey' => 'randomKeyCommand',
 }
 REPLY_HANDLERS = {

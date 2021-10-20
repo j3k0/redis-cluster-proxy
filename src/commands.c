@@ -28,6 +28,7 @@ int securityWarningCommand(void *req);
 int pingCommand(void *req);
 int authCommand(void *req);
 int scanCommand(void *req);
+int selectCommand(void *req);
 
 /* Reply Handlers */
 int mergeReplies(void *reply, void *request, char *buf, int len);
@@ -136,7 +137,7 @@ struct redisCommandDef redisCommandTable[203] = {
     {"incrbyfloat", 3, 1, 1, 1, 0, 0, NULL, NULL, NULL},
     {"info", -1, 0, 0, 0, 0, 0, NULL, NULL, getInfoReply},
     {"lpush", -3, 1, 1, 1, 0, 0, NULL, NULL, NULL},
-    {"select", 2, 0, 0, 0, 0, 0, NULL, NULL, NULL},
+    {"select", 2, 0, 0, 0, 0, 0, NULL, selectCommand, NULL},
     {"pfadd", -2, 1, 1, 1, 0, 0, NULL, NULL, NULL},
     {"hkeys", 2, 1, 1, 1, 0, 0, NULL, NULL, NULL},
     {"sinterstore", -3, 1, -1, 1,
