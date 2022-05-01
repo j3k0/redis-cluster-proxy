@@ -48,6 +48,7 @@ COMMAND_HANDLERS = {
     'ping' => 'pingCommand',
     'auth' => 'authCommand',
     'scan' => 'scanCommand',
+    'select' => 'selectCommand',
     #'randomkey' => 'randomKeyCommand',
 }
 REPLY_HANDLERS = {
@@ -71,6 +72,7 @@ REPLY_HANDLERS = {
     'scan' => 'handleScanReply',
     'command' => 'getFirstMultipleReply',
     'randomkey' => 'getRandomReply',
+    'info' => 'getInfoReply',
 }
 GET_KEYS_PROC = {
     'zunionstore' => 'zunionInterGetKeys',
