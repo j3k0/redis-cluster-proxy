@@ -1,5 +1,15 @@
 # Redis Cluster Proxy
 
+> This is a fork of RedisLabs's cluster proxy. It includes additional commit with pseudo support for the `INFO` and `SELECT` commands, allowing the proxy to work with libraries that use those commands to initialize the client (with `SELECT`) and check the health of the client (with `INFO`).
+> - `SELECT` will be a no-op.
+> - `INFO` will return the info from a random master in the cluster.
+>
+> It also integrates various pull requests with **bug fixes** (see commits list for details).
+>
+> Lastly, it includes a `Dockerfile` so the image is automatically built on Docker Hub. The image name is [jeko/redis-cluster-proxy](https://hub.docker.com/r/jeko/redis-cluster-proxy).
+>
+> That's all! Now the original description:
+
 Redis Cluster Proxy is a proxy for [Redis](https://redis.io/) Clusters.
 Redis has the ability to run in Cluster mode, where a set of Redis instances will take care of failover and partitioning. This special mode requires the use of special clients understanding the Cluster protocol: by using this Proxy instead the Cluster is abstracted away, and you can talk with a set of instances composing a Redis Cluster like if they were a single instance.
 Redis Cluster Proxy is multi-threaded and it currently uses, by default, a multiplexing communication model so that every thread has its own connection to the cluster that is shared to all clients belonging to the thread itself.
