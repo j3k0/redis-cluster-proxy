@@ -1,4 +1,4 @@
-FROM alpine:3.11 as build
+FROM alpine:3.20 as build
 
 RUN apk add --no-cache gcc musl-dev linux-headers openssl-dev make git
 
@@ -11,7 +11,7 @@ RUN chown -R app redis-cluster-proxy
 USER app
 RUN cd redis-cluster-proxy && make -j4 install
 
-FROM alpine:3.11 as runtime
+FROM alpine:3.20 as runtime
 
 RUN apk add --no-cache libstdc++
 RUN apk add --no-cache strace
